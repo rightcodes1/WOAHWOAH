@@ -1,9 +1,23 @@
-[build]
-builder = "NIXPACKS"
-
-[deploy]
-startCommand = "node index.js"
-
-[[deploy.volumes]]
-name = "sqlite_data"
-path = "/app/database"
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "/Dockerfile",
+    "buildEnvironment": "V3"
+  },
+  "deploy": {
+    "runtime": "V2",
+    "numReplicas": 1,
+    "startCommand": "node index.js",
+    "sleepApplication": true,
+    "useLegacyStacker": false,
+    "ipv6EgressEnabled": false,
+    "multiRegionConfig": {
+      "europe-west4-drams3a": {
+        "numReplicas": 1
+      }
+    },
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  }
+}
