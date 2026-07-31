@@ -20,6 +20,3 @@ const CONFIG = {
     INFO: 0x0099FF
   }
 };
-
-module.exports = CONFIG;
-
